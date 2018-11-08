@@ -19,11 +19,10 @@ public class TelaPrincipal extends JFrame implements ActionListener, WindowListe
 
     Servidor servidor;
     private final JPanel painel = new JPanel(new GridBagLayout());
-    private final JButton btnLiga = new JButton("Ligar Servidor");
     private final JButton btnFazerPagamento = new JButton("Fazer Pagamento");
     private final JButton btnVerComanda = new JButton("Ver Comandas Abertas");
     private final JButton btnVerProdutos = new JButton("Ver Produtos Cadastrados");
-    private final JButton btnComandas = new JButton("Cadastrar Comandas");
+    private final JButton btnComandas = new JButton("Cadastrar ID Comandas");
 
     private boolean status = true;
 
@@ -40,9 +39,6 @@ public class TelaPrincipal extends JFrame implements ActionListener, WindowListe
                 BorderFactory.createEmptyBorder()));
         painel.setBackground(Color.white);
 
-        this.btnLiga.addActionListener(this);
-        btnLiga.setSize(new Dimension(300, 25));
-        btnLiga.setBackground(Color.lightGray);
         this.btnFazerPagamento.addActionListener(this);
         btnFazerPagamento.setSize(new Dimension(300, 25));
         btnFazerPagamento.setBackground(Color.lightGray);
@@ -95,9 +91,7 @@ public class TelaPrincipal extends JFrame implements ActionListener, WindowListe
     public void actionPerformed(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
         try {
-            if (btn.equals(this.btnLiga)) {
-
-            } else if (btn.equals(this.btnFazerPagamento)) {
+            if (btn.equals(this.btnFazerPagamento)) {
                 new TelaFazerPagamento();
 
             } else if (btn.equals(this.btnVerComanda)) {//Outra pagina mostrando as abertas e as fechadas

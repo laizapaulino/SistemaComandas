@@ -24,8 +24,8 @@ public class TelaVerTodasComanda extends JFrame implements ActionListener {
     private JTextArea resultado = new JTextArea(20, 40);
     private final JComboBox cbComandas = new JComboBox();
     private final JButton btnVai = new JButton("Selecionar");
-    private final JButton btnFecharComanda = new JButton("Fechar Comanda");
-    private final JButton btnEditarComanda = new JButton("Editar Comanda");
+    //private final JButton btnFecharComanda = new JButton("Fechar Comanda");
+    //private final JButton btnEditarComanda = new JButton("Editar Comanda");
 
     public TelaVerTodasComanda() {
         com = new ctrComandas();
@@ -46,11 +46,12 @@ public class TelaVerTodasComanda extends JFrame implements ActionListener {
 
         btnVai.addActionListener(this);
         btnVai.setBackground(Color.LIGHT_GRAY);
-        btnFecharComanda.addActionListener(this);
-        btnFecharComanda.setBackground(Color.LIGHT_GRAY);
+        // btnFecharComanda.addActionListener(this);
+        //btnFecharComanda.setBackground(Color.LIGHT_GRAY);
 
-        btnEditarComanda.addActionListener(this);
+        /* btnEditarComanda.addActionListener(this);
         btnEditarComanda.setBackground(Color.LIGHT_GRAY);
+         */
         JScrollPane scroll = new JScrollPane(resultado,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -82,9 +83,7 @@ public class TelaVerTodasComanda extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton botao = (JButton) e.getSource();
-        if (botao.equals(this.btnEditarComanda)) {
 
-        }
         if (botao.equals(this.btnVai)) {
             if (this.cbComandas.getSelectedItem().equals("Abertas")) {
                 resultado.setText(com.verComandasAbertas());
@@ -99,7 +98,7 @@ public class TelaVerTodasComanda extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         new TelaVerTodasComanda();
-    }
+    }*/
 }

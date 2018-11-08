@@ -46,7 +46,7 @@ public class ctrConsumo {
                 break;
             }
         }
-        System.out.print("Tam: " + listaProdutos.size() + "  it: " + iterador);
+        //System.out.print("Tam: " + listaProdutos.size() + "  it: " + iterador);
 
         return iterador;
     }
