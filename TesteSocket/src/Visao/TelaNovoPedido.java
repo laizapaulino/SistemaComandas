@@ -29,7 +29,6 @@ public class TelaNovoPedido extends JFrame implements ActionListener {
     private JTextField tfPed2;
     private JTextField tfPed3;
     private JTextField tfPed4;
-    private JTextField tfStatus = new JTextField(10);
     private final JComboBox cbComanda = new JComboBox();
     private JTextArea resultado = new JTextArea(20, 40);
 
@@ -38,12 +37,13 @@ public class TelaNovoPedido extends JFrame implements ActionListener {
     private ArrayList<Consumo> p = new ArrayList<>();
     ArrayList<String> lista;
     ctrProd controle = new ctrProd();
-    
+    OQueFazerCliente cl;
 
     String ax = "";
 
-    public TelaNovoPedido() {
+    public TelaNovoPedido( OQueFazerCliente cli) {
         super("Novo Pedido");
+        this.cl = cli;
         this.inicializaArray();
         this.inicializaText();
         this.inicializaCombo();
@@ -190,7 +190,6 @@ public class TelaNovoPedido extends JFrame implements ActionListener {
 
         JButton botao = (JButton) e.getSource();
         if (botao.equals(this.btEnviarPedido)) {
-            OQueFazerCliente cl = new OQueFazerCliente();
             ax += this.pegaTextoSeTiver(p);
             try {
                 cl.mandarPedido((String) cbComanda.getSelectedItem(), p);

@@ -20,9 +20,14 @@ import java.util.Vector;
  * @author Laiza
  */
 public class OQueFazerCliente {
+    private String IP;
 
+    public OQueFazerCliente(String IP) {
+        this.IP = IP;
+    }
+    
     public void mandarPedido(String mesa, ArrayList<Consumo> lista) throws IOException {
-        Socket cliente = new Socket("127.0.0.1", 12345);
+        Socket cliente = new Socket(IP, 12345);
         ObjectOutputStream output = new ObjectOutputStream(cliente.getOutputStream());//Serve pra mandar as coisas
         Pedidos pedido = new Pedidos(mesa);
         pedido.setListaConsumo(lista);
@@ -33,7 +38,7 @@ public class OQueFazerCliente {
     }
 
     public void fecharComanda(String mesa) throws IOException {
-        Socket cliente = new Socket("127.0.0.1", 12345);
+        Socket cliente = new Socket(this.IP, 12345);
 
         ObjectOutputStream outro = new ObjectOutputStream(cliente.getOutputStream());//Serve pra mandar as coisas
         fimComanda fim = new fimComanda(mesa);
@@ -45,7 +50,7 @@ public class OQueFazerCliente {
     }
 
     public String verComanda(String mesa) throws IOException, ClassNotFoundException {
-        Socket cliente = new Socket("127.0.0.1", 12345);
+        Socket cliente = new Socket(this.IP, 12345);
         ObjectOutputStream outro = new ObjectOutputStream(cliente.getOutputStream());
         outro.writeObject(new VerComandasAbertas(mesa));
 
@@ -67,7 +72,7 @@ public class OQueFazerCliente {
     }
 
     public void atualiza(ctrProd prod) throws IOException, ClassNotFoundException, Exception {
-        Socket cliente = new Socket("127.0.0.1", 12345);
+        Socket cliente = new Socket(this.IP, 12345);
         ObjectOutputStream outro = new ObjectOutputStream(cliente.getOutputStream());
         outro.writeObject("Atualiza");//Manda pedido de atualiza
 
@@ -104,7 +109,7 @@ public class OQueFazerCliente {
     }
     
      public void atualiza2(ctrProd controle) throws IOException, ClassNotFoundException, Exception {
-        Socket cliente = new Socket("127.0.0.1", 12345);
+        Socket cliente = new Socket(this.IP, 12345);
         ObjectOutputStream outro = new ObjectOutputStream(cliente.getOutputStream());
         outro.writeObject("Atualiza Comanda");//Manda requisição para receber as comandas que existem
         

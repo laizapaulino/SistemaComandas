@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author Laiza
  */
 public class TelaVerComanda extends JFrame implements ActionListener {
-
+            OQueFazerCliente cliente ;
     private final JPanel painel = new JPanel(new GridBagLayout());
     private JTextArea resultado = new JTextArea(20, 40);
     private final JComboBox cbComandas = new JComboBox();
@@ -26,8 +26,8 @@ public class TelaVerComanda extends JFrame implements ActionListener {
     private final JButton btnFecharComanda = new JButton("Fechar Comanda");
     private final JButton btnEditarComanda = new JButton("Editar Comanda");
 
-    public TelaVerComanda() {
-
+    public TelaVerComanda(OQueFazerCliente cli) {
+        this.cliente = cli;
         //tfCampoTitulo.setEditable(false);
         //tfCampoISBN.setEditable(false);
         resultado.setEditable(false);
@@ -93,7 +93,6 @@ public class TelaVerComanda extends JFrame implements ActionListener {
         }*/
         if (botao.equals(this.btnVai)) {
             try {
-                OQueFazerCliente cliente = new OQueFazerCliente();
                 String z = cliente.verComanda((String) this.cbComandas.getSelectedItem());
                 resultado.setText(z);///Erro
             } catch (IOException | ClassNotFoundException ex) {
@@ -102,7 +101,6 @@ public class TelaVerComanda extends JFrame implements ActionListener {
 
         }
         if (botao.equals(this.btnFecharComanda)) {
-            OQueFazerCliente cliente = new OQueFazerCliente();
             try {
                 cliente.fecharComanda((String) this.cbComandas.getSelectedItem());
                 JOptionPane.showMessageDialog(null, "Comanda " + this.cbComandas.getSelectedItem() + " Fechada");
