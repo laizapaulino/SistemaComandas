@@ -138,7 +138,7 @@ public class ctrComandas {
         String x = "Comanda\n----------------------------\n";
 
         for (int i = 0; i < this.comFechadas.size(); i++) {
-            if (comFechadas.get(i).getMesa().equals(mesa)) {
+            if (comFechadas.get(i).getMesa().equals(mesa) && comFechadas.get(i).getMetodoDePagamento().equals("")) {
                 x += comFechadas.get(i).toString() + "\n";
                 break;
             }
