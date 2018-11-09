@@ -33,6 +33,8 @@ public class TelaPrincipal extends JFrame implements ActionListener, WindowListe
     public void HabilitaDesabilita() {
         this.btnNovoPedido.setEnabled(this.status);
         this.btnVerComanda.setEnabled(this.status);
+        this.btnAtualiza.setEnabled(this.status);
+
     }
 
     public TelaPrincipal() {
@@ -48,10 +50,10 @@ public class TelaPrincipal extends JFrame implements ActionListener, WindowListe
         this.btnConecta.setSize(new Dimension(300, 25));
         btnConecta.setBackground(Color.lightGray);
 
-        /* this.btnAtualiza.addActionListener(this);
+        this.btnAtualiza.addActionListener(this);
         btnAtualiza.setSize(new Dimension(300, 25));
         btnAtualiza.setBackground(Color.lightGray);
-         */
+
         this.btnNovoPedido.addActionListener(this);
         btnNovoPedido.setSize(new Dimension(300, 25));
         btnNovoPedido.setBackground(Color.lightGray);
@@ -62,13 +64,13 @@ public class TelaPrincipal extends JFrame implements ActionListener, WindowListe
 
         //this.btnListaPublicacoes.addActionListener(this);
         this.btnConecta.addActionListener(this);
-        adicionarComponente(painel, new JLabel("IP:"), 0, 0, 1, 1);
 
+        adicionarComponente(painel, new JLabel("IP:"), 0, 0, 1, 1);
         adicionarComponente(painel, this.tfIP, 1, 0, 1, 1);
         adicionarComponente(painel, this.btnConecta, 2, 0, 1, 1);
 
-        /*adicionarComponente(painel, this.btnAtualiza, 0, 1, 1, 1);
-         */
+        adicionarComponente(painel, this.btnAtualiza, 1, 1, 1, 1);
+
         adicionarComponente(painel, this.btnNovoPedido, 1, 2, 1, 1);
         adicionarComponente(painel, this.btnVerComanda, 1, 3, 1, 1);
         HabilitaDesabilita();
@@ -102,26 +104,22 @@ public class TelaPrincipal extends JFrame implements ActionListener, WindowListe
         JButton btn = (JButton) e.getSource();
         try {
             if (btn.equals(this.btnConecta)) {
-                //System.out.println("Entrei\n\n");
                 this.status = true;
                 System.out.print(tfIP.getText());
                 this.cli = new OQueFazerCliente(this.tfIP.getText());
                 cli.atualiza(controleProd);
                 cli.atualiza2(controleProd);
-                // System.out.println(this.controleProd.retornaProdutos());
                 this.HabilitaDesabilita();
-                //System.out.println("Tamanho : "+this.controleProd.listaProdutos.size());
+                this.tfIP.setEditable(false);
+                this.btnConecta.setEnabled(false);
 
-            } /*if (btn.equals(this.btnAtualiza)) {
-                //System.out.println("Entrei\n\n");
-                this.status = true;
+            }
+            if (btn.equals(this.btnAtualiza)) {
+
                 cli.atualiza(this.controleProd);
                 cli.atualiza2(this.controleProd);
-                // System.out.println(this.controleProd.retornaProdutos());
-                this.HabilitaDesabilita();
-                //System.out.println("Tamanho : "+this.controleProd.listaProdutos.size());
 
-            }*/ else if (btn.equals(this.btnNovoPedido)) {
+            } else if (btn.equals(this.btnNovoPedido)) {
                 new TelaNovoPedido(cli);
             } else if (btn.equals(this.btnVerComanda)) {
                 new TelaVerComanda(cli);
