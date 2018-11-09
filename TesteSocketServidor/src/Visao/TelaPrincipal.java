@@ -20,7 +20,7 @@ public class TelaPrincipal extends JFrame implements ActionListener, WindowListe
     Servidor servidor;
     private final JPanel painel = new JPanel(new GridBagLayout());
     private final JButton btnFazerPagamento = new JButton("Fazer Pagamento");
-    private final JButton btnVerComanda = new JButton("Ver Comandas Abertas");
+    private final JButton btnVerComanda = new JButton("Ver Comandas");
     private final JButton btnVerProdutos = new JButton("Ver Produtos Cadastrados");
     private final JButton btnComandas = new JButton("Cadastrar ID Comandas");
 

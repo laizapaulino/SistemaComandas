@@ -25,10 +25,10 @@ public class TelaCadastrarComandas extends JFrame implements ActionListener {
 
     private final JPanel painel = new JPanel(new GridBagLayout());
     private final JTextField tfPed1 = new JTextField(30);
-
+    private JTextArea textTodosID = new JTextArea();
     private ctrComandas controle = new ctrComandas();
-    private final JButton btCadastra = new JButton("Cadstrar comanda/mesa");
-    private ArrayList<Consumo> p = new ArrayList<>();
+    private final JButton btCadastra = new JButton("Cadastrar comanda/mesa");
+    ctrComandas c = new ctrComandas();
 
     public TelaCadastrarComandas() {
         super("Cadastrar Produto");
@@ -45,6 +45,10 @@ public class TelaCadastrarComandas extends JFrame implements ActionListener {
         btCadastra.addActionListener(this);
         btCadastra.setBackground(Color.LIGHT_GRAY);
         adicionarComponente(painel, btCadastra, 0, 10, 1, 1);
+
+        this.textTodosID.setEditable(false);
+        this.textTodosID.setText(c.toStringID());
+        adicionarComponente(painel, this.textTodosID, 0, 11, 1, 1);
 
         super.add(painel);
         super.pack();
@@ -64,14 +68,13 @@ public class TelaCadastrarComandas extends JFrame implements ActionListener {
 
         JButton botao = (JButton) e.getSource();
         if (botao.equals(this.btCadastra)) {
-            ctrComandas c = new ctrComandas();
             if (tfPed1.getText().length() > 0) {
                 try {
                     c.adicionarComanda((String) tfPed1.getText());
                     c.serializarID();
-                    System.out.println("Cadastra comanda, ha: "+ c.idComandas.size());
+                    this.textTodosID.setText(c.toStringID());
+                    System.out.println("Cadastra comanda, ha: " + c.idComandas.size());
                     this.limpaTF();
-                    JOptionPane.showMessageDialog(null, "Cadastrado!");
                 } catch (Exception ex) {
                     Logger.getLogger(TelaCadastrarComandas.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,19 +64,39 @@ public class ctrComandas {
     }
 
     public void adicionarComanda(String id) throws Exception {
-        this.idComandas.add(id);
-        this.idComandas.sort(null);
-        this.serializarID();
+        boolean achou = false;
+        for (int i = 0; i < this.idComandas.size(); i++) {
+            if (idComandas.get(i).equals(id)) {
+                achou = true;
+                JOptionPane.showMessageDialog(null, "Comanda já cadastrada, tente outra");
+
+            }
+        }
+        if (achou == false) {
+            this.idComandas.add(id);
+            this.idComandas.sort(null);
+            this.serializarID();
+            JOptionPane.showMessageDialog(null, "Cadastrado!");
+
+        }
+    }
+
+    public String toStringID() {
+        String texto = "ID Comandas Cadastradas";
+        for (int i = 0; i < this.idComandas.size(); i++) {
+            texto += "\n" + this.idComandas.get(i);
+        }
+        return texto;
     }
 
     public void excluirComanda(String id) {
-        for (int i =0;i< this.idComandas.size();i++){
-            if(idComandas.get(i).equals(id)){
+        for (int i = 0; i < this.idComandas.size(); i++) {
+            if (idComandas.get(i).equals(id)) {
                 this.idComandas.remove(i);
             }
         }
     }
-    
+
     public void fecharComanda(fimComanda fechada) throws Exception {
         for (int i = 0; i < comandas.size(); i++) {
             if (comandas.get(i).getMesa().equals(fechada.getMesa())) {
@@ -219,7 +240,6 @@ public class ctrComandas {
         }
     }
 
-    
     /*public void lerProdutos(String nome) {
         try {
             FileInputStream arquivo = new FileInputStream(nome);
@@ -273,7 +293,7 @@ public class ctrComandas {
 
         }
     }
-    
+
     public void lerID() {
         try {
             FileInputStream arquivo = new FileInputStream(this.nomeID);
